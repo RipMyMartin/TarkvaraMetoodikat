@@ -1,8 +1,8 @@
 class Patsient:
-    def __init__(self, nimi, vanus, regAeg):
+    def __init__(self, nimi, vanus):
         self.nimi = nimi
         self.vanus = vanus
-        self.regAeg = ""
+        self.regAeg = "" 
 
 class Hospital:
     def __init__(self):
@@ -20,13 +20,12 @@ class Hospital:
     def KohtumineTegemine(self):
         PatsientIndex = 0
 
-        PatsientNimi = input("Sisesta patsientNimi")
-        DoctorName = input("Sisesta Doc nimi")
+        PatsientNimi = input("Sisesta patsientNimi: ")
+        DoctorName = input("Sisesta Doc nimi: ")
 
         for elem in self.patsientList:
             if elem.nimi == PatsientNimi:
                 PatsientIndex = self.patsientList.index(elem)
-
 
         for elem in self.docktorList:
             if elem.nimi == DoctorName and len(elem.aeg) > 0:
@@ -47,8 +46,8 @@ class Doctor:
 
 
 Patsient1 = Patsient('Martkus', 17)
-Patsient2 = Patsient('David', 36, "14:00")
-Patsient3 = Patsient('Gelb', 108, "16:00")
+Patsient2 = Patsient('David', 36)
+Patsient3 = Patsient('Gelb', 108)
 
 Doctor1 = Doctor("Martin", 56, "ortopeed", ['10:00', '11:00', '12:00'])
 Doctor2 = Doctor("Jakopson", 87,"silmaarst", ['14:00', '18,00', '19,00'])
@@ -65,3 +64,5 @@ print("------------PATSIENT------------")
 haigla.PatsientKuvamine()
 print("-----------DOCTOR---------------")
 haigla.DoctorKuvamine()
+print("-----------KOHTUMINE------------")
+haigla.KohtumineTegemine()
