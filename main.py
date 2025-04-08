@@ -24,12 +24,12 @@ class Hospital:
         DoctorName = input("Sisesta Doc nimi")
 
         for elem in self.patsientList:
-            if elem.nimi == patsientNimi:
+            if elem.nimi == PatsientNimi:
                 PatsientIndex = self.patsientList.index(elem)
 
 
         for elem in self.docktorList:
-            if elem.nimi == doctorName and len(elem.aeg) > 0:
+            if elem.nimi == DoctorName and len(elem.aeg) > 0:
                 self.patsientList[PatsientIndex].regAeg = elem.aeg[0]
 
         for elem in self.patsientList:
@@ -46,9 +46,9 @@ class Doctor:
         self.aeg = aeg
 
 
-Patsient1 = Patsient("Markus", 17)
-Patsient2 = Patsient("David", 36)
-Patsient3 = Patsient("Gelb", 108)
+Patsient1 = Patsient('Martkus', 17)
+Patsient2 = Patsient('David', 36, "14:00")
+Patsient3 = Patsient('Gelb', 108, "16:00")
 
 Doctor1 = Doctor("Martin", 56, "ortopeed", ['10:00', '11:00', '12:00'])
 Doctor2 = Doctor("Jakopson", 87,"silmaarst", ['14:00', '18,00', '19,00'])
