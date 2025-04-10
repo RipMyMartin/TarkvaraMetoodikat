@@ -1,6 +1,8 @@
 import streamlit as st
 
-st.session_state.tasks = []
+if "tasks" not in st.session_state:
+    st.session_state.tasks = []
+
 st.title("Task List App")
 def add_task():
     task = st.text_input("Enter a new task:", key="new_task_input")
