@@ -1,0 +1,7 @@
+Truck ID             Timestamp                      Status     Message
+TRK-001              2025-04-16T10:05:00Z            SUCCESS    Valid
+TRK-002              2025-04-16T10:10:00Z            SUCCESS    Valid
+TRK-003              2025-04-15T16:30:00Z            SUCCESS    Valid
+TRK-004              2025-04-15T17:45:00Z            SUCCESS    Valid
+TRK-005              2025-04-15T12:00:00Z            SUCCESS    Valid
+TRK-006              wrong-format                    SUCCESS    Valid

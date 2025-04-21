@@ -34,15 +34,15 @@ def procces_log_file(filepath):
             valid, message, timestamp = validate_record(record)
             print(valid, message, timestamp)
 
-            truck_id = record.get("truck_id ", "UNKNOWN")
-            timestamp = record.get("timestamp ", "NoTime")
+            truck_id = record.get("truck_id", "UNKNOWN")
+            timestamp = record.get("timestamp", "NoTime")
             line = f"{truck_id} | {timestamp}"
 
 
             if valid:
-                success_log.write(line +  "| SUCCES \n")
+                success_log.write(line +  " | SUCCES \n")
             else:
-                error_log.write(line + f"ERROR: {message} \n")
+                error_log.write(line + f" | ERROR: {message} \n")
 
 
 procces_log_file("log_input.json")
