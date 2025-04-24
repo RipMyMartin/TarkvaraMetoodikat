@@ -1,52 +1,76 @@
-import json
-import datetime
+import json, datetime
+import unittest
 
 def validate_record(record):
     try:
         timestamp = record.get("timestamp")
 
+
         truck_id = record.get("truck_id")
-        if not truck_id or not isinstance(truck_id, str):
-            return False, "Invalid or missing truck_id", timestamp
+        if not truck_id or not isinstance(truck_id,str):
+            return False, "Invalid or missing truck_id",timestamp
 
         latitude = record.get("latitude")
-        if not isinstance(latitude, float):
-            return False, "Invalid latitude", timestamp
+        if not isinstance(latitude,float):
+            return False, "Invalid latitude",timestamp
+
 
         longitude = record.get("longitude")
-        if not isinstance(longitude, float):
-            return False, "Invalid longitude", timestamp
+        if not isinstance(longitude,float):
+            return False, "Invalid longitude"
 
-        return True, "Valid", timestamp
+        return True, "Valid",timestamp
+
+
 
     except Exception as e:
-        return False, f"Exception: {str(e)}", None
+        return False, f"Exeception: {str(e)}", timestamp
 
 
-def process_log_file(filepath):
+def procces_log_file(filepath):
     records = []
-    with open(filepath, "r") as file:
-        records = json.load(file)
-    
-    header = f"{'Truck ID':<20} {'Timestamp':<30} {'Status':<10} {'Message'}\n"
+    with open(filepath,"r") as file:
+        records  = json.load(file)
+        print(records)
     
     with open("success.log", "w") as success_log, open("error.log", "w") as error_log:
-        success_log.write(header)
-        error_log.write(header)
-
         for record in records:
             valid, message, timestamp = validate_record(record)
+            print(valid, message,timestamp)
             
-            if timestamp is None:
-                timestamp = "NoTime"
-            
-            truck_id = record.get("truck_id", "UNKNOWN")
-            
-            line = f"{truck_id:<20} {timestamp:<30} "
+            truck_id = record.get("truck_id","UNKNOWN")
+            timestamp = record.get("timestamp","NO_TIME")
+            line = f"{truck_id}| {timestamp}"
 
             if valid:
-                success_log.write(line + f" {'SUCCESS':<10} {message}\n")
+                success_log.write(line + "| SUCCESS \n")
             else:
-                error_log.write(line + f" {'ERROR':<10} {message}\n")
+                error_log.write(line + f"| ERROR: {message} \n")
 
-process_log_file("log_input.json")
+
+class TestGpsValidation(unittest.TestCase):
+    def test_valid_record(self):
+        record =  {
+        "truck_id": "TRUK123",
+        "latitude": 59.437,
+        "longitude": 24.7536,
+        "timestamp": "2025-04-16T10:05:00Z"
+    }
+
+        valid, message, timestamp = validate_record(record)
+        self.assertTrue(valid) 
+        self.assertEqual(message, "Valid")
+
+    def test_missing_truck_id(self):
+        record =  {
+            "latitude": 59.437,
+            "longitude": 24.7536,
+            "timestamp": "2025-04-16T10:05:00Z"
+        }
+        valid, message, timestamp = validate_record(record)
+        self.assertFalse(valid) 
+        self.assertEqual(message, "Invalid or missing truck_id")
+
+
+procces_log_file("log_input.json")
+unittest.main()

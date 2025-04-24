@@ -1,2 +1,2 @@
-Truck ID             Timestamp                      Status     Message
-                     invalid-time                    ERROR      Invalid or missing truck_id
+| invalid-time| ERROR: Invalid or missing truck_id 
+None| 2025-04-15T14:30:00Z| ERROR: Invalid or missing truck_id 
