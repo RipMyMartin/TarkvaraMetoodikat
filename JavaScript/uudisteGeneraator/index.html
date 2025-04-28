@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>News Generator</h1>
+        
+        <div class="category-selection">
+            <h2>Select News Category</h2>
+            <div class="categories">
+                <button class="category-btn active" data-category="technology">Technology</button>
+                <button class="category-btn" data-category="sports">Sports</button>
+                <button class="category-btn" data-category="economy">Economy</button>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button id="generate-btn">Generate News</button>
+            <button id="regenerate-btn">Regenerate News</button>
+        </div>
+        
+        <div class="news-list-container">
+            <h2>Generated News</h2>
+            <div id="news-list" class="news-list"></div>
+        </div>
+        
+        <div class="add-news-container">
+            <h2>Add Your Own News</h2>
+            <div class="add-news-form">
+                <textarea id="news-content" placeholder="Enter your news content..."></textarea>
+                <button id="add-news-btn">Add News</button>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
